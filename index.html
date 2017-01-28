@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title> To Do List with Local Storage </title>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/mystyles.css" rel="stylesheet">
+</head>
+<body>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12">
+
+                <h1 class="text-success">To Do List (with local storage)</h1>
+                <p class="lead">This To Do list app saves your list items locally, on your computer. You don't need to be online to use it, and none of your data is sent out to the Internet.</p>
+
+            </div> <!-- close col -->
+        </div> <!-- close row -->
+
+        <form id="newItemForm" class="form-horizontal">
+
+        <fieldset class="well">
+        <legend>Add a New To Do Item</legend>
+
+            <div class="form-group">
+                <label for="itemname" class="col-sm-2 control-label">Item Name</label>
+                <div class="col-sm-10">
+                <input type="text" name="itemname" id="itemname" class="form-control" maxlength="80" required>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="duedate" class="col-sm-2 control-label">Due Date</label>
+                <div class="col-sm-10">
+                <input type="date" name="duedate" id="duedate" class="form-control" required>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="descrip" class="col-sm-2 control-label">Details</label>
+                <div class="col-sm-10">
+                <textarea name="descrip" id="descrip" rows="4" maxlength="300" placeholder="No more than 300 characters long" class="form-control"></textarea>
+                </div>
+            </div>
+
+            <div class="form-group">
+            <label for="priority" class="col-sm-2 control-label">Priority</label>
+                <div class="col-sm-10">
+                <select class="form-control" name="priority" id="priority">
+                <option value=1>Highest</option>
+                <option value=2>High</option>
+                <option value=3 selected="">Middle</option>
+                <option value=4>Low</option>
+                <option value=5>Lowest</option>
+                </select>
+            </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-sm-4 col-sm-offset-2 col-xs-12">
+                    <input type="submit" class="btn btn-success form-control" value="Add Item">
+                </div>
+                <div class="col-sm-4 col-xs-12">
+                    <input type="reset" class="btn btn-default form-control" value="Cancel">
+                </div>
+            </div>
+
+        </fieldset>
+        </form>
+        <div class="row">
+            <div class="col-xs-12">
+                <p>This is a personal coding project by Mindy McAdams. My goal was to learn about <a href="https://developer.mozilla.org/en-US/docs/Web/API/Web_Storage_API" target="_blank">localStorage</a>. Bootstrap theme: <a href="https://bootswatch.com/sandstone/" target="_blank">Sandstone</a>.</p>
+            </div>
+        </div>
+
+    </div> <!-- close container -->
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js">
+    </script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
