@@ -119,7 +119,7 @@ function getFormData() {
     $('#itemname').val("");
     $('#duedate').val("");
     $('#descrip').val("");
-    $('#priority').val("");
+    $('#priority').val(3);
 
     // assign object properties
     toDoItem.name = newItem;
