@@ -115,11 +115,11 @@ function getFormData() {
     var newDate     = $('#duedate').val();
     var newPriority = $('#priority').val();
 
-    // clear input fields
+    // clear or reset input fields
     $('#itemname').val("");
     $('#duedate').val("");
     $('#descrip').val("");
-    $('#priority').val("");
+    $('#priority').val(3);
 
     // assign object properties
     toDoItem.name = newItem;
