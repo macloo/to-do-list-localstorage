@@ -1,14 +1,28 @@
 $( document ).ready( function() {
 
-/* check if browser has localStorage */
+var toDoItem = new Object();
+var myArray = [];
+
 if ( storageAvailable('localStorage') ) {
-    alert("Ready!");
+    /* check if toDoList exists - if not, keep form visible */
+    if( !localStorage.getItem('maclooToDoList') ) {
+        $('.lead').after('<p class="alert alert-success text-center">You' +
+            ' don\'t have a To Do list on this device. Use the form to create' +
+            ' your first item.</p>');
+    } else {
+        // $('#newItemForm').hide();
+        // get localStorage string, parse into objects, put into array
+        myArray.push( JSON.parse( localStorage.getItem('maclooToDoList') ) );
+        writeOutToDoList();
+    }
+
 } else {
     $('.lead').after('<p class="alert alert-danger text-center">Oh, no!' +
     ' Your browser does not support local storage!</p>');
     $('#newItemForm').hide();
 }
 
+/* test for existence of localStorage */
 function storageAvailable(type) {
 	try {
 		var storage = window[type],
@@ -28,25 +42,16 @@ $('#newItemForm').submit(function(e) {
     getFormData();
 });
 
-/* check if toDoList exists */
-if( !localStorage.getItem('toDoList') ) {
-    $('.lead').after('<p class="alert alert-success text-center">You' +
-        ' don\'t have a To Do list on this device. Use the form to create' +
-        ' your first item.</p>');
-} else {
-    $('#newItemForm').hide();
-    writeOutToDoList();
-}
-
 function writeOutToDoList(){
-    // stuff to write list
+    // myArray already has the objects
+    // stuff to write list - loop
 }
 
 function getFormData() {
     // get text from input fields
     var newItem     = $('#itemname').val();
-    var newDescrip  = $('#duedate').val();
-    var newDate     = $('#descrip').val();
+    var newDescrip  = $('#descrip').val();
+    var newDate     = $('#duedate').val();
     var newPriority = $('#priority').val();
 
     // clear input fields
@@ -57,9 +62,21 @@ function getFormData() {
 
     console.log(newItem + " " + newDescrip + " " + newDate + " " + newPriority);
 
-    // will have to construct object: completeList
-    // localStorage.setItem(x, x);
-    // localStorage.setItem( 'toDoList', JSON.stringify(completeList) );
+    // assign object properties
+    toDoItem.name = newItem;
+    toDoItem.descrip = newDescrip;
+    toDoItem.date = newDate;
+    toDoItem.priority = newPriority;
+
+    // add new item to the array
+    myArray.push(toDoItem);
+
+    // write it out to localStorage right away
+    localStorage.setItem( 'maclooToDoList', JSON.stringify(myArray) );
+
+    // all objects are in the array: myArray is completeList
+    // localStorage.setItem(x, x); // name, value
+    // localStorage.setItem( 'maclooToDoList', JSON.stringify(completeList) );
 }
 
 }); // end document ready
