@@ -18,6 +18,7 @@ App now reads and writes perfectly to/from localStorage. Remaining things to do:
 
 * Add a "remove" checkbox to each item.
 * Add options to reorder the list items by either priority or due date.
+* Fix bug for first use when there is no localStorage key - it kills your first item and doubles the second item. Wha—?
 
 ### Jan. 28
 
