@@ -21,6 +21,7 @@
         </div> <!-- close row -->
 
         <form id="newItemForm" class="form-horizontal">
+            <p id="paraToHideForm"><a href="#" id="hideForm">View your To Do list</a></p>
 
         <fieldset class="well">
         <legend>Add a New To Do Item</legend>
@@ -71,25 +72,20 @@
         </fieldset>
         </form>
         <!-- this will be hidden at times -->
-        <div class="row" id="toDoData">
+        <div class="row" id="toDoDataRow">
             <div class="col-xs-12">
-            <h2>My To Do Items</h2>
-                <div class="panel panel-success">
-                    <div class="panel-heading">
-                        <h3 class="panel-title">Panel success</h3>
-                    </div>
-                    <div class="panel-body">
-                        Panel content
-                    </div>
-                </div>
+                <h2>My To Do Items</h2>
+                <p><a href="#" id="showForm">Enter a new To Do item</a> &mdash; open form</p>
+
+                <!-- To Do items go here -->
+                <div id="toDoData"></div>
             </div>
         </div>
         <div class="row">
             <div class="col-xs-12">
-                <p>This is a personal coding project by Mindy McAdams. My goal was to learn about <a href="https://developer.mozilla.org/en-US/docs/Web/API/Web_Storage_API" target="_blank">localStorage</a>. Bootstrap theme: <a href="https://bootswatch.com/sandstone/" target="_blank">Sandstone</a>.</p>
+                <p class="credits">This is a personal coding project by Mindy McAdams. My goal was to learn about <a href="https://developer.mozilla.org/en-US/docs/Web/API/Web_Storage_API" target="_blank">localStorage</a>. Bootstrap theme: <a href="https://bootswatch.com/sandstone/" target="_blank">Sandstone</a>.</p>
             </div>
         </div>
-
     </div> <!-- close container -->
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js">
