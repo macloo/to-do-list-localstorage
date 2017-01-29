@@ -3,15 +3,19 @@ $( document ).ready( function() {
 var toDoItem = new Object();
 var myArray = [];
 var storageKey = 'maclooToDoList';
+var firstVisit = false;
 
 if ( storageAvailable('localStorage') ) {
     /* check if toDoList exists - if not, keep form visible */
     if( !localStorage.getItem(storageKey) ) {
-        $('.lead').after('<p class="alert alert-success text-center">You' +
+        $('.lead').after('<p class="alert alert-success text-center"' +
+            ' id="firstTimeAlert">You' +
             ' don\'t have a To Do list on this device. Use the form to create' +
             ' your first item.</p>');
         $('#paraToHideForm').hide();
         $('#toDoDataRow').hide();
+        // using this to show/hide two things
+        firstVisit = true;
 
     /* if toDoList does exist -- */
     } else {
@@ -130,6 +134,11 @@ function getFormData() {
     localStorage.setItem( storageKey, JSON.stringify(myArray) );
 
     // after writing, hide form and show all items
+    if (firstVisit) {
+        $('#firstTimeAlert').hide();
+        $('#paraToHideForm').show();
+        firstVisit = false;
+    }
     $('#toDoDataRow').show();
     writeOutToDoList();
     $('#newItemForm').hide();
