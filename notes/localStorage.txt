@@ -65,6 +65,12 @@ for (var i = 0; i < localStorage.length; i++){
 
 ------------------------------------
 
+RUN THIS TO CLEAR THE WHOLE THING
+
+localStorage.removeItem("maclooToDoList");
+
+------------------------------------
+
 check if browser has localStorage:
 https://developer.mozilla.org/en-US/docs/Web/API/Web_Storage_API/Using_the_Web_Storage_API
 
