@@ -2,10 +2,11 @@ $( document ).ready( function() {
 
 var toDoItem = new Object();
 var myArray = [];
+var storageKey = 'maclooToDoList';
 
 if ( storageAvailable('localStorage') ) {
     /* check if toDoList exists - if not, keep form visible */
-    if( !localStorage.getItem('maclooToDoList') ) {
+    if( !localStorage.getItem(storageKey) ) {
         $('.lead').after('<p class="alert alert-success text-center">You' +
             ' don\'t have a To Do list on this device. Use the form to create' +
             ' your first item.</p>');
@@ -16,7 +17,7 @@ if ( storageAvailable('localStorage') ) {
     } else {
         $('#newItemForm').hide();
         // get localStorage string, parse into objects, replace array
-        myArray = JSON.parse( localStorage.getItem('maclooToDoList') );
+        myArray = JSON.parse( localStorage.getItem(storageKey) );
         // write array contents to page
         writeOutToDoList();
     }
@@ -126,7 +127,7 @@ function getFormData() {
     myArray.push(toDoItem);
 
     // write it out to localStorage right away
-    localStorage.setItem( 'maclooToDoList', JSON.stringify(myArray) );
+    localStorage.setItem( storageKey, JSON.stringify(myArray) );
 
     // after writing, hide form and show all items
     $('#toDoDataRow').show();
