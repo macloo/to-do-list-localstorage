@@ -57,11 +57,30 @@ Can change value of username.
 Can add new items separately in different sessions.
 ------------------------------------
 
+RUN THIS IN CONSOLE TO SEE ALL LOCALSTORAGE THINGS 
+
 for (var i = 0; i < localStorage.length; i++){
     console.log(localStorage.getItem(localStorage.key(i)));
 }
 
+------------------------------------
+
 check if browser has localStorage:
 https://developer.mozilla.org/en-US/docs/Web/API/Web_Storage_API/Using_the_Web_Storage_API
+
+------------------------------------
+
+IT WORKS!!!!
+
+[[{"name":"Brush cat","descrip":"2017-01-30","date":"Prevent hairballs","priority":"2"}],{"name":"Get groceries","descrip":"2017-01-29","date":"Put food in fridge so I don't starve","priority":"4"}]
+
+Well except I misdefined my vars 
+
+[[[{"name":"Brush cat","descrip":"2017-01-30","date":"Prevent hairballs","priority":"2"}],{"name":"Get groceries","descrip":"2017-01-29","date":"Put food in fridge so I don't starve","priority":"4"}],{"name":"Clean the kitchen","descrip":"Because ","date":"2017-02-01","priority":"5"}]
+
+Oops no that is making bunches of arrays
+
+------------------------------------
+
 
 

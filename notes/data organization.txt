@@ -27,4 +27,13 @@ http://stackoverflow.com/questions/34493531/how-to-store-and-retrieve-json-data-
 
 
 
+newItem  newDescrip  newDate  newPriority
+
+[
+{"name":"do laundry","descrip":"get ready for trip","date":"01/30/16","priority":1},
+{"name":"get groceries","descrip":"make lunches for week","date":"01/28/16","priority":2},
+{"name":"wash Vespa","descrip":"","date":"02/02/16","priority":4},
+{"name":"clean guest room","descrip":"","date":"02/14/16","priority":5}
+]
+
 
