@@ -1,6 +1,6 @@
 # To Do list with localStorage
 
-This is a personal coding project. My goal is to learn about [localStorage](https://developer.mozilla.org/en-US/docs/Web/API/Web_Storage_API).
+This is a personal coding project. My goal is to learn about [localStorage](https://developer.mozilla.org/en-US/docs/Web/API/Web_Storage_API). It's part of my #100DaysOfCode challenge (see days 18–20 in [my log, here](https://github.com/macloo/100-days-of-code/blob/master/log.md)).
 
 **Step 1** was to make a form so the user can enter data into the To Do list.
 
