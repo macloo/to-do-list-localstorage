@@ -14,7 +14,9 @@ I also check whether your browser has localStorage at all. If not, I hide both t
 
 ### Jan. 30
 
-Dang, I have a persistent bug that I swear was not there yesterday. Duplicates of To Do items, and also disappearing To Do items.
+~~Dang, I have a persistent bug that I swear was not there yesterday. Duplicates of To Do items, and also disappearing To Do items.~~
+
+I think I've fixed it. Moved `var toDoItem = new Object();` down into the `getFormData()` function and that seems to have done the trick.
 
 ### Jan. 29
 

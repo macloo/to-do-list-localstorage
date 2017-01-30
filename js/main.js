@@ -1,6 +1,5 @@
 $( document ).ready( function() {
 
-var toDoItem = new Object();
 var myArray = [];
 var storageKey = 'maclooToDoList';
 var firstVisit = false;
@@ -8,18 +7,19 @@ var firstVisit = false;
 if ( storageAvailable('localStorage') ) {
     /* check if toDoList exists - if not, keep form visible */
     if( !localStorage.getItem(storageKey) ) {
+        firstVisit = true;
         $('.lead').after('<p class="alert alert-success text-center"' +
             ' id="firstTimeAlert">You' +
             ' don\'t have a To Do list on this device. Use the form to create' +
             ' your first item.</p>');
         $('#paraToHideForm').hide();
         $('#toDoDataRow').hide();
-        // using this to show/hide two things
-        firstVisit = true;
+        // using this to show/hide two things not suitabe for first visit
 
     /* if toDoList does exist -- */
     } else {
         $('#newItemForm').hide();
+        firstVisit = false;
         // get localStorage string, parse into objects, replace array
         myArray = JSON.parse( localStorage.getItem(storageKey) );
         // write array contents to page
@@ -50,6 +50,11 @@ function storageAvailable(type) {
 // listen for form submit event
 $('#newItemForm').submit(function(e) {
     e.preventDefault();
+    if (firstVisit) {
+        firstVisit = false;
+        $('#firstTimeAlert').hide();
+        $('#paraToHideForm').show();
+    }
     getFormData();
 });
 
@@ -80,13 +85,16 @@ function writeOutToDoList() {
             itemname + ' &mdash; ' + descrip +
             '</div><div class="panel-footer">DUE: ' +
             duedate + '</div></div>';
-        var remove = '';
+        // use for checkbox - does not exist yet
+        var removalKey = myArray[i];
+        // each item added to full string
         string += itemstring;
     }
     $('#toDoDataRow').show();
     $('#toDoData').html("").append(string);
 }
 
+// set Bootstrap styles and priority word
 function setPriority(priority) {
     var designate, level;
     if (priority == 1) {
@@ -122,6 +130,7 @@ function getFormData() {
     $('#priority').val(3);
 
     // assign object properties
+    var toDoItem = new Object();
     toDoItem.name = newItem;
     toDoItem.descrip = newDescrip;
     toDoItem.date = newDate;
@@ -133,12 +142,6 @@ function getFormData() {
     // write it out to localStorage right away
     localStorage.setItem( storageKey, JSON.stringify(myArray) );
 
-    // after writing, hide form and show all items
-    if (firstVisit) {
-        $('#firstTimeAlert').hide();
-        $('#paraToHideForm').show();
-        firstVisit = false;
-    }
     $('#toDoDataRow').show();
     writeOutToDoList();
     $('#newItemForm').hide();
