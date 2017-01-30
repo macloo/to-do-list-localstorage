@@ -12,6 +12,10 @@ So I have to `JSON.stringify()` to write the list into localStorage. But when I 
 
 I also check whether your browser has localStorage at all. If not, I hide both the form and the list from you and post a message.
 
+### Jan. 30
+
+Dang, I have a persistent bug that I swear was not there yesterday. Duplicates of To Do items, and also disappearing To Do items.
+
 ### Jan. 29
 
 App now reads and writes perfectly to/from localStorage. Remaining things to do:
