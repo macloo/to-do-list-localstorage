@@ -30,6 +30,10 @@ If you want to delete a key and all its contents, run this in the JavaScript con
 localStorage.removeItem("toDoList");
 ```
 
+If you want to get a list of all the keys in your localStorage:
+
+![Screen capture: List keys in localStorage](images/keys-localStorage.png)
+
 ### Jan. 30
 
 ~~Dang, I have a persistent bug that I swear was not there yesterday. Duplicates of To Do items, and also disappearing To Do items.~~
