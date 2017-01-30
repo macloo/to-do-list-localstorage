@@ -12,11 +12,29 @@ So I have to `JSON.stringify()` to write the list into localStorage. But when I 
 
 I also check whether your browser has localStorage at all. If not, I hide both the form and the list from you and post a message.
 
+## Some things to know about localStorage
+
+Some tutorials have you save each item with its own key. I'm not doing that. I'm saving the entire To Do list with one localStorage key. The way my code is written, I could add an option to save separate To Do lists under different key names.
+
+If you want to see all localStorage items, run this in the JavaScript console:
+
+```
+for (var i = 0; i < localStorage.length; i++){
+    console.log(localStorage.getItem(localStorage.key(i)));
+}
+```
+
+If you want to delete a key and all its contents, run this in the JavaScript console (where `toDoList` is the key name):
+
+```
+localStorage.removeItem("toDoList");
+```
+
 ### Jan. 30
 
 ~~Dang, I have a persistent bug that I swear was not there yesterday. Duplicates of To Do items, and also disappearing To Do items.~~
 
-I think I've fixed it. Moved `var toDoItem = new Object();` down into the `getFormData()` function and that seems to have done the trick.
+I think I've fixed it. Moved `var toDoItem = new Object();` down into the `getFormData()` function and that seems to have done the trick. After testing both locally and at github.io, I think it's okay.
 
 ### Jan. 29
 
