@@ -1,0 +1,98 @@
+Local Storage (HTML5 and JavaScript)
+Or: No more cookies 
+------------------------------------
+
+
+http://diveintohtml5.info/storage.html
+
+https://developer.mozilla.org/en-US/docs/Web/API/Web_Storage_API
+
+https://github.com/mdn/web-storage-demo
+http://mdn.github.io/web-storage-demo/
+
+
+
+https://www.cookielaw.org/the-cookie-law/
+
+
+------------------------------------
+http://stackoverflow.com/questions/16083919/push-json-objects-to-array-in-localstorage
+"please note that localStorage (at the current time) cannot hold any data type except for strings. You will need to serialize the array for storage and then parse it back out to make modifications to it."
+
+
+var a = [];
+a.push(JSON.parse(localStorage.getItem('session')));
+localStorage.setItem('session', JSON.stringify(a));
+
+
+function SaveDataToLocalStorage(data)
+{
+    var a = [];
+    // Parse the serialized data back into an aray of objects
+    a = JSON.parse(localStorage.getItem('session'));
+    // Push the new data (whether it be an object or anything else) onto the array
+    a.push(data);
+    // Alert the array value
+    alert(a);  // Should be something like [Object array]
+    // Re-serialize the array back into a string and store it in localStorage
+    localStorage.setItem('session', JSON.stringify(a));
+}
+
+------------------------------------
+https://developer.mozilla.org/en-US/docs/Web/API/Storage/LocalStorage
+
+// Save data to the current local store
+localStorage.setItem("username", "John");
+
+// Access some stored data
+alert( "username = " + localStorage.getItem("username"));
+
+Can run tests like this:
+localStorage.setItem("username", "Mindy");
+var a = localStorage.getItem("username");
+var b = localStorage.getItem("color");
+alert( "username = " + a + " and color = " + b);
+
+Can change value of username.
+Can add new items separately in different sessions.
+------------------------------------
+
+RUN THIS IN CONSOLE TO SEE ALL LOCALSTORAGE THINGS 
+
+for (var i = 0; i < localStorage.length; i++){
+    console.log(localStorage.getItem(localStorage.key(i)));
+}
+
+------------------------------------
+
+RUN THIS TO CLEAR THE WHOLE THING
+
+localStorage.removeItem("maclooToDoList");
+
+------------------------------------
+
+check if browser has localStorage:
+https://developer.mozilla.org/en-US/docs/Web/API/Web_Storage_API/Using_the_Web_Storage_API
+
+------------------------------------
+
+IT WORKS!!!!
+
+[[{"name":"Brush cat","descrip":"2017-01-30","date":"Prevent hairballs","priority":"2"}],{"name":"Get groceries","descrip":"2017-01-29","date":"Put food in fridge so I don't starve","priority":"4"}]
+
+Well except I misdefined my vars 
+
+[[[{"name":"Brush cat","descrip":"2017-01-30","date":"Prevent hairballs","priority":"2"}],{"name":"Get groceries","descrip":"2017-01-29","date":"Put food in fridge so I don't starve","priority":"4"}],{"name":"Clean the kitchen","descrip":"Because ","date":"2017-02-01","priority":"5"}]
+
+Oops no that is making bunches of arrays
+
+------------------------------------
+
+for (var i = 0; i < localStorage.length; i++){
+	var key = localStorage.getItem(localStorage[key]);
+	var value = localStorage.getItem(localStorage.key(i));
+    console.log(key + ": " + value);
+}
+
+    var key = localStorage.key(i);
+    var value = localStorage[key];
