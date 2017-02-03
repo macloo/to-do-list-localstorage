@@ -69,6 +69,7 @@ $('#hideForm').click(function(e) {
 $('#showForm').click(function(e) {
     e.preventDefault();
     $('#newItemForm').show();
+    $('.removeAll').remove();
     $('#toDoDataRow').hide();
 });
 
@@ -85,7 +86,7 @@ function writeOutToDoList() {
         var itemstring = '<div class="panel panel-default">' +
             '<div class="panel-body">' +
             '<span class="label label-' + designate[0] + '">' +
-            + designate[1] + '</span> ' +
+            designate[1] + '</span> ' +
             itemname + ' &mdash; ' + descrip + '</div>' +
             '<div class="panel-footer">' +
             '<span class="checkbox floater">' +
