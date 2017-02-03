@@ -10,3 +10,10 @@ h1 {
 .credits {
     padding: 2.5em 0;
 }
+.floater {
+    float: right;
+    margin: 0;
+}
+.clearfix {
+    clear: both;
+}

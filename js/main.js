@@ -74,24 +74,35 @@ $('#showForm').click(function(e) {
 
 function writeOutToDoList() {
     var string = "";
+    // loop through all To Do items, make one big string
     for (var i = 0; i < myArray.length; i++) {
         var itemname = myArray[i].name;
         var descrip = myArray[i].descrip;
         var duedate = myArray[i].date;
         var designate = setPriority(myArray[i].priority);
+        // use for checkbox
+        var removalIndex = i;
         var itemstring = '<div class="panel panel-default">' +
-            '<div class="panel-body">' + '<span class="label label-' +
-             designate[0] + '">' + designate[1] + '</span> ' +
-            itemname + ' &mdash; ' + descrip +
-            '</div><div class="panel-footer">DUE: ' +
-            duedate + '</div></div>';
-        // use for checkbox - does not exist yet
-        var removalKey = myArray[i];
+            '<div class="panel-body">' +
+            '<span class="label label-' + designate[0] + '">' +
+            + designate[1] + '</span> ' +
+            itemname + ' &mdash; ' + descrip + '</div>' +
+            '<div class="panel-footer">' +
+            '<span class="checkbox floater">' +
+            '<label><input type="checkbox" name="removeThis" value="' +
+            removalIndex + '"> Remove</label></span>' +
+            'DUE: ' + duedate + '</div> </div>';
         // each item added to full string
         string += itemstring;
     }
     $('#toDoDataRow').show();
-    $('#toDoData').html("").append(string);
+    var removeButton = "<div class='floater'>" +
+        "<button class='btn btn-success removeAll'>Remove " +
+        "Checked Items</button></div>";
+    $('#toDoData').before(removeButton);
+    $('#toDoData').html("")
+        .append(string)
+        .append(removeButton);
 }
 
 // set Bootstrap styles and priority word
