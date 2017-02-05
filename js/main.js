@@ -1,11 +1,12 @@
 $( document ).ready( function() {
 
 var myArray = [];
+// you can change the value of storageKey to have other datasets in localStorage
 var storageKey = 'maclooToDoList';
 var firstVisit = false;
 
 if ( storageAvailable('localStorage') ) {
-    /* check if toDoList exists - if not, keep form visible */
+    // check if this dataset exists - if not, keep form visible
     if( !localStorage.getItem(storageKey) ) {
         firstVisit = true;
         $('.lead').after('<p class="alert alert-success text-center"' +
@@ -16,7 +17,7 @@ if ( storageAvailable('localStorage') ) {
         $('#toDoDataRow').hide();
         // using this to show/hide two things not suitabe for first visit
 
-    /* if toDoList does exist -- */
+    // if toDoList does exist -
     } else {
         $('#newItemForm').hide();
         firstVisit = false;
@@ -25,7 +26,7 @@ if ( storageAvailable('localStorage') ) {
         // write array contents to page
         writeOutToDoList();
     }
-/* if there is not localStorage */
+// if there is not localStorage
 } else {
     $('.lead').after('<p class="alert alert-danger text-center">Oh, no!' +
     ' Your browser does not support local storage!</p>');
@@ -58,14 +59,14 @@ $('#newItemForm').submit(function(e) {
     getFormData();
 });
 
-// listen for link click
+// listen for link click to see the list
 $('#hideForm').click(function(e) {
     e.preventDefault();
     $('#newItemForm').hide();
     writeOutToDoList();
 });
 
-// listen for link click
+// listen for link click to see the form
 $('#showForm').click(function(e) {
     e.preventDefault();
     $('#newItemForm').show();
@@ -104,6 +105,27 @@ function writeOutToDoList() {
     $('#toDoData').html("")
         .append(string)
         .append(removeButton);
+
+        // listen for button click to remove checked To Do items -
+        // Has to be _inside_ the writeOutToDoList() function because 
+        // otherwise .removeAll does not exist
+        $('.removeAll').click(function(e) {
+            // get rid of the two buttons to avoid second click
+            $('.removeAll').remove();
+            // get index numbers from all checked items
+            var indexes = handleCheckboxes();
+            // remove those items from myArray
+            while (indexes.length > 0) {
+                var i = indexes.pop();
+                myArray.splice(i, 1);
+            }
+            // write myArray out to localStorage
+            localStorage.setItem( storageKey, JSON.stringify(myArray) );
+            $('#toDoDataRow').hide();
+            // recursively call this function - oh my god
+            writeOutToDoList();
+        });
+
 }
 
 // set Bootstrap styles and priority word
@@ -158,5 +180,21 @@ function getFormData() {
     writeOutToDoList();
     $('#newItemForm').hide();
 }
+
+// process the "remove" checkboxes
+function handleCheckboxes() {
+    var indexes = [];
+    $('input[type=checkbox]').each( function() {
+        if ( this.checked ) {
+            indexes.push( $(this).val() );
+        }
+    });
+    // reorder the array to ascending order - because of pop()
+    indexes.sort(function(a, b) {
+        return a - b;
+    });
+    return indexes;
+}
+
 
 }); // end document ready
