@@ -34,6 +34,10 @@ If you want to get a list of all the keys in your localStorage:
 
 ![Screen capture: List keys in localStorage](images/keys-localStorage.png)
 
+### Feb. 4
+
+Not only is the bug fixed — now the "remove" checkbox works for each To Do item! Many new lines of code added! Callooh! Callay! 
+
 ### Jan. 30
 
 ~~Dang, I have a persistent bug that I swear was not there yesterday. Duplicates of To Do items, and also disappearing To Do items.~~
