@@ -15,7 +15,9 @@
             <div class="col-xs-12">
 
                 <h1 class="text-success">To Do List (with local storage)</h1>
-                <p class="lead">This To Do list app saves your list items locally, on your computer. You don't need to be online to use it, and none of your data is sent out to the Internet.</p>
+                <p class="lead">This To Do list app saves your list items locally, on your computer. You don't need to be online to use it, and none of your data is sent out to the Internet. <span id="showMore"><a href="#">[more]</a></span></p>
+
+                <p class="lead" id="moreText">Because of the way localStorage works, you will not be able to see this To Do list on another device, or even in another browser on the same device. If that suits your needs, you can rely on this small app to manage your personal To Do items. To learn more about localStorage, see <a href="https://www.w3.org/TR/webstorage/#the-localstorage-attribute" target="_blank">this</a> or <a href="https://developer.mozilla.org/en-US/docs/Web/API/Storage/LocalStorage" target="_blank">this</a>. <span id="showLess"><a href="#">[less]</a></span></p>
 
             </div> <!-- close col -->
         </div> <!-- close row -->
@@ -77,8 +79,23 @@
                 <h2>My To Do Items</h2>
                 <p><a href="#" id="showForm">Enter a new To Do item</a> &mdash; open form</p>
 
+                <!-- buttons above list -->
+                <div class='floater'>
+                    <button class='btn btn-success removeAll'>Remove Checked Items</button>
+                </div>
+                <div class='floater'>
+                    <button class='btn btn-primary' id='sortPri'>Sort by Priority</button>
+                </div>
+                <div class='floater'>
+                    <button class='btn btn-info' id='sortDate'>Sort by Due Date</button>
+                </div>
+
                 <!-- To Do items go here -->
                 <div id="toDoData" class="clearfix"></div>
+                <!-- final button -->
+                <div class='floater'>
+                    <button class='btn btn-success removeAll'>Remove Checked Items</button>
+                </div>
             </div>
         </div>
         <div class="row">
@@ -88,7 +105,7 @@
         </div>
     </div> <!-- close container -->
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"> </script>
+    <script src="js/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/main.js"></script>
 </body>

@@ -7,6 +7,15 @@ numbers.sort(function(a, b) {
 });
 console.log(numbers);
 
+
+http://stackoverflow.com/questions/10123953/sort-javascript-object-array-by-date
+This works, changing string to a real date an evaluating it (date is a property of each object in myArray):
+
+myArray.sort(function(a, b) {
+    return new Date(a.date) - new Date(b.date);
+});
+
+
 Splice:
 newDeck.splice(num, 1);
 Removes the item with index number "num" from the array newDeck, i.e. newDeck[num] is removed. The "1" limits the removal to a single item.
@@ -20,22 +29,3 @@ while (indexes.length > 0) {
     var i = indexes.pop();
     myArray.splice(i, 1);
 }
-
-
-
-// listen for button click to remove checked To Do items
-$('.removeAll').click(function(e) {
-    // get rid of the two buttons to avoid second click
-    $('.removeAll').remove();
-    // get index numbers from all checked items
-    var indexes = handleCheckboxes();
-    // remove those items from myArray
-    while (indexes.length > 0) {
-        var i = indexes.pop();
-        myArray.splice(i, 1);
-    }
-    // write myArray out to localStorage
-    localStorage.setItem( storageKey, JSON.stringify(myArray) );
-    $('#toDoDataRow').hide();
-    writeOutToDoList();
-});

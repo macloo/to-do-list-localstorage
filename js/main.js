@@ -1,7 +1,8 @@
 $( document ).ready( function() {
 
 var myArray = [];
-// you can change the value of storageKey to have other datasets in localStorage
+// you can change the value of storageKey if you want
+// to have multiple datasets in localStorage
 var storageKey = 'maclooToDoList';
 var firstVisit = false;
 
@@ -34,7 +35,7 @@ if ( storageAvailable('localStorage') ) {
     $('#toDoDataRow').hide();
 }
 
-/* test for existence of localStorage */
+// test for existence of localStorage
 function storageAvailable(type) {
 	try {
 		var storage = window[type],
@@ -70,8 +71,54 @@ $('#hideForm').click(function(e) {
 $('#showForm').click(function(e) {
     e.preventDefault();
     $('#newItemForm').show();
-    $('.removeAll').remove();
     $('#toDoDataRow').hide();
+});
+
+// listen for button click to remove checked To Do items -
+$('.removeAll').click(function(e) {
+    // get index numbers from all checked items
+    var indexes = handleCheckboxes();
+    // remove those items from myArray
+    while (indexes.length > 0) {
+        var i = indexes.pop();
+        myArray.splice(i, 1);
+    }
+    // write myArray out to localStorage
+    localStorage.setItem( storageKey, JSON.stringify(myArray) );
+    $('#toDoDataRow').hide();
+    writeOutToDoList();
+});
+
+// listen for button click to sort items -
+$('#sortPri').click(function(e) {
+    // sort items by priority and show in list
+    myArray.sort(function(a, b) {
+        return a.priority - b.priority;
+    });
+    writeOutToDoList();
+    // note: this does not write myArray out to localStorage
+});
+
+// listen for button click to sort items -
+$('#sortDate').click(function(e) {
+    // sort items by date and show in list
+    myArray.sort(function(a, b) {
+        return new Date(a.date) - new Date(b.date);
+    });
+    writeOutToDoList();
+    // note: this does not write myArray out to localStorage
+});
+
+// hide second paragraph at top
+$("#moreText").hide();
+// listen for clicks on [more] and [less]
+$("#showMore").click(function(e) {
+    $("#moreText").slideDown();
+    $(this).hide();
+});
+$("#showLess").click(function(e) {
+    $("#moreText").slideUp();
+    $("#showMore").show();
 });
 
 function writeOutToDoList() {
@@ -98,37 +145,10 @@ function writeOutToDoList() {
         string += itemstring;
     }
     $('#toDoDataRow').show();
-    var removeButton = "<div class='floater'>" +
-        "<button class='btn btn-success removeAll'>Remove " +
-        "Checked Items</button></div>";
-    $('#toDoData').before(removeButton);
-    $('#toDoData').html("")
-        .append(string)
-        .append(removeButton);
-
-        // listen for button click to remove checked To Do items -
-        // Has to be _inside_ the writeOutToDoList() function because 
-        // otherwise .removeAll does not exist
-        $('.removeAll').click(function(e) {
-            // get rid of the two buttons to avoid second click
-            $('.removeAll').remove();
-            // get index numbers from all checked items
-            var indexes = handleCheckboxes();
-            // remove those items from myArray
-            while (indexes.length > 0) {
-                var i = indexes.pop();
-                myArray.splice(i, 1);
-            }
-            // write myArray out to localStorage
-            localStorage.setItem( storageKey, JSON.stringify(myArray) );
-            $('#toDoDataRow').hide();
-            // recursively call this function - oh my god
-            writeOutToDoList();
-        });
-
+    $('#toDoData').html("").append(string);
 }
 
-// set Bootstrap styles and priority word
+// set Bootstrap styles and priority word, using number in the object
 function setPriority(priority) {
     var designate, level;
     if (priority == 1) {
@@ -173,12 +193,12 @@ function getFormData() {
     // add the new item to the array
     myArray.push(toDoItem);
 
-    // write it out to localStorage right away
+    // write the whole array out to localStorage right away
     localStorage.setItem( storageKey, JSON.stringify(myArray) );
 
     $('#toDoDataRow').show();
     writeOutToDoList();
-    $('#newItemForm').hide();
+    $('#newItemForm').slideUp();
 }
 
 // process the "remove" checkboxes
@@ -195,6 +215,5 @@ function handleCheckboxes() {
     });
     return indexes;
 }
-
 
 }); // end document ready
