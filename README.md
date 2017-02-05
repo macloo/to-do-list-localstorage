@@ -2,6 +2,8 @@
 
 This is a personal coding project. My goal is to learn about [localStorage](https://developer.mozilla.org/en-US/docs/Web/API/Web_Storage_API). It's part of my #100DaysOfCode challenge (see days 18–24 in [my log, here](https://github.com/macloo/100-days-of-code/blob/master/log.md)).
 
+There was no tutorial, video, how-to or “challenge” for this project. I thought of it and pursued it by searching with Google, MDN and Stack Overflow.
+
 **Step 1** was to make a form so the user can enter data into the To Do list.
 
 **Step 2** I had to figure out how localStorage works. A pretty important thing to note is that "localStorage (at the current time) cannot hold any data type except for *strings*. You will need to serialize the array for storage and then parse it back out to make modifications to it." ([source](http://stackoverflow.com/questions/16083919/push-json-objects-to-array-in-localstorage))
