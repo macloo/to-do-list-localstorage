@@ -12,6 +12,8 @@ So I have to `JSON.stringify()` to write the list into localStorage. But when I 
 
 I also check whether your browser has localStorage at all. If not, I hide both the form and the list from you and post a message.
 
+**Other steps** See dated list below. While I set out only to learn about localStorage, I also learned some new things about sorting in JavaScript — especially how to sort an array of objects based on the object's properties.
+
 ## Some things to know about localStorage
 
 Some tutorials have you save each item with its own key. I'm not doing that. I'm saving the entire To Do list with one localStorage key. The way my code is written, I could add an option to save separate To Do lists under different key names.
@@ -34,9 +36,19 @@ If you want to get a list of all the keys in your localStorage:
 
 ![Screen capture: List keys in localStorage](images/keys-localStorage.png)
 
+### Feb. 5
+
+This project is now complete. Of course, one could do more things with a To Do list app, but I've done everything I set out to do with this:
+
+* The To Do items are saved only in localStorage.
+* Individual To Do items can be deleted.
+* Multiple To Do items can be deleted as a batch.
+* The order of the items can be changed based on either their priority or their due date.
+* The app runs on a single page.
+
 ### Feb. 4
 
-Not only is the bug fixed — now the "remove" checkbox works for each To Do item! Many new lines of code added! Callooh! Callay! 
+Not only is the bug fixed — now the "remove" checkbox works for each To Do item! Many new lines of code added! Callooh! Callay!
 
 ### Jan. 30
 
