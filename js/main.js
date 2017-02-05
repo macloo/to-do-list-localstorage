@@ -2,7 +2,7 @@ $( document ).ready( function() {
 
 var myArray = [];
 // you can change the value of storageKey to have other datasets in localStorage
-var storageKey = 'maclooToDoList';
+var storageKey = 'foobar';
 var firstVisit = false;
 
 if ( storageAvailable('localStorage') ) {
@@ -34,7 +34,7 @@ if ( storageAvailable('localStorage') ) {
     $('#toDoDataRow').hide();
 }
 
-/* test for existence of localStorage */
+// test for existence of localStorage
 function storageAvailable(type) {
 	try {
 		var storage = window[type],
@@ -74,6 +74,18 @@ $('#showForm').click(function(e) {
     $('#toDoDataRow').hide();
 });
 
+// hide second paragraph at top
+$("#moreText").hide();
+// listen for clicks on [more] and [less]
+$("#showMore").click(function(e) {
+    $("#moreText").slideDown();
+    $(this).hide();
+});
+$("#showLess").click(function(e) {
+    $("#moreText").slideUp();
+    $("#showMore").show();
+});
+
 function writeOutToDoList() {
     var string = "";
     // loop through all To Do items, make one big string
@@ -107,7 +119,7 @@ function writeOutToDoList() {
         .append(removeButton);
 
         // listen for button click to remove checked To Do items -
-        // Has to be _inside_ the writeOutToDoList() function because 
+        // Has to be _inside_ the writeOutToDoList() function because
         // otherwise .removeAll does not exist
         $('.removeAll').click(function(e) {
             // get rid of the two buttons to avoid second click
