@@ -13,6 +13,7 @@ h1 {
 .floater {
     float: right;
     margin: 0;
+    margin-left: 0.7em;
 }
 .clearfix {
     clear: both;

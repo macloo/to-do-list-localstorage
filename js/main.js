@@ -110,13 +110,18 @@ function writeOutToDoList() {
         string += itemstring;
     }
     $('#toDoDataRow').show();
+    /*
     var removeButton = "<div class='floater'>" +
         "<button class='btn btn-success removeAll'>Remove " +
         "Checked Items</button></div>";
+    var sortPriButton = "<div class='floater'>" +
+        "<button class='btn btn-primary' id='sortPri'>Sort " +
+        "by Priority</button></div>";
     $('#toDoData').before(removeButton);
-    $('#toDoData').html("")
-        .append(string)
-        .append(removeButton);
+    $('#toDoData').before(sortPriButton);
+    */
+    $('#toDoData').html("").append(string);
+    /*    .append(removeButton);  */ 
 
         // listen for button click to remove checked To Do items -
         // Has to be _inside_ the writeOutToDoList() function because
@@ -135,6 +140,16 @@ function writeOutToDoList() {
             localStorage.setItem( storageKey, JSON.stringify(myArray) );
             $('#toDoDataRow').hide();
             // recursively call this function - oh my god
+            writeOutToDoList();
+        });
+
+        // listen for button click to sort items -
+        $('#sortPri').click(function(e) {
+            // sort items by priority and show in list
+            myArray.sort(function(a, b) {
+                return a.priority - b.priority;
+            });
+            // recursively call this function
             writeOutToDoList();
         });
 
@@ -208,5 +223,11 @@ function handleCheckboxes() {
     return indexes;
 }
 
+/*
+.name
+.descrip
+.date
+.priority
+*/
 
 }); // end document ready
