@@ -42,6 +42,15 @@ Object.keys(localStorage);
 
 ![Screen capture: List keys in localStorage](images/keys-localStorage.png)
 
+### Aug. 26
+
+~~I have a bug: The alert "You don't have a To Do list on this device. Use the form to create your first item" pops up twice when you have no To Do list yet, and continues to appear after you have a To Do list.~~
+
+Fixed. This bug turned out to be a problem with hide/show, because of the hidden text and the [more]/[less] option. I was inserting the alert twice because of the way I used jQuery `.after()`.
+
+Also today, I bundled the main operation into a function (named `main`) and rearranged the code in the JS file (`main.js`) so that functions are all at the top and event listeners are at the bottom.
+
+
 ### Feb. 5
 
 This project is now complete. Of course, one could do more things with a To Do list app, but I've done everything I set out to do with this:
@@ -81,11 +90,3 @@ Where what I actually needed was:
 `myArray = JSON.parse( localStorage.getItem('myToDoList') );`
 
 That is the one place where I retrieve the data from localStorage. I write it out to localStorage every time the form is submitted, in case the user closes the browser then, but I only have to read it once — when the JS runs the first time after `$(document).ready()`
-
-### Aug. 26
-
-I have a bug: The alert "You don't have a To Do list on this device. Use the form to create your first item" pops up twice when you have no To Do list yet, and continues to appear after you have a To Do list.
-
-Fixed. This turned out to be a problem with hide/show, because of the hidden text and the [more]/[less] option.
-
-Also, I bundled the main operation into a function (named `main`).
