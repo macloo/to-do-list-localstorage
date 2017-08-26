@@ -36,6 +36,10 @@ localStorage.removeItem("toDoList");
 
 If you want to get a list of all the keys in your localStorage:
 
+```
+Object.keys(localStorage);
+```
+
 ![Screen capture: List keys in localStorage](images/keys-localStorage.png)
 
 ### Feb. 5
@@ -70,10 +74,18 @@ App now reads and writes perfectly to/from localStorage. Remaining things to do:
 
 I had some trouble with handling the array of objects correctly. At first I was writing arrays into arrays. That was because I had:
 
-`myArray.push( JSON.parse( localStorage.getItem('maclooToDoList') ) );`
+`myArray.push( JSON.parse( localStorage.getItem('myToDoList') ) );`
 
 Where what I actually needed was:
 
-`myArray = JSON.parse( localStorage.getItem('maclooToDoList') );`
+`myArray = JSON.parse( localStorage.getItem('myToDoList') );`
 
 That is the one place where I retrieve the data from localStorage. I write it out to localStorage every time the form is submitted, in case the user closes the browser then, but I only have to read it once — when the JS runs the first time after `$(document).ready()`
+
+### Aug. 26
+
+I have a bug: The alert "You don't have a To Do list on this device. Use the form to create your first item" pops up twice when you have no To Do list yet, and continues to appear after you have a To Do list.
+
+Fixed. This turned out to be a problem with hide/show, because of the hidden text and the [more]/[less] option.
+
+Also, I bundled the main operation into a function (named `main`).
