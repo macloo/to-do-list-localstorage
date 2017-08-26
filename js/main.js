@@ -21,7 +21,7 @@ $(document).ready(function() {
           ' id="firstTimeAlert">You' +
           ' don\'t have a To Do list on this device. Use the form to create' +
           ' your first item.</p>');
-        // hide two things not suitabe for first visit
+        // hide two things not suitable for first visit
         $('#paraToHideForm').hide();
         $('#toDoDataRow').hide();
       // if toDoList does exist -
@@ -36,8 +36,8 @@ $(document).ready(function() {
     // if there is not localStorage
     } else {
       // write alert message
-      $('.lead').after('<p class="alert alert-danger text-center">Oh, no!' +
-        ' Your browser does not support local storage!</p>');
+      $('#newItemForm').before('<p class="alert alert-danger text-center">Oh, ' +
+        'no! Your browser does not support local storage!</p>');
       $('#newItemForm').hide();
       $('#toDoDataRow').hide();
     }
